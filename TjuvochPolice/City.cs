@@ -61,15 +61,33 @@ namespace TjuvochPolice
 
                         }
 
-                        Thread.Sleep(1000);
-                        InteractionInfo.Clear();
-                       }
+                        
+                    }
                 }
             }
+            
+            DisplayInteractions(cityHeight);
+
 
         }
 
-        
+
+        private static void DisplayInteractions(int cityHeight)
+        {
+            int infoPosition = cityHeight + 2; // Position för information
+            Console.SetCursorPosition(0, infoPosition); // Flytta markören
+
+            // Skriv ut interaktioner under staden
+            foreach (string info in InteractionInfo)
+            {
+                Console.WriteLine(info);
+                
+            }
+
+            // Rensa listan efter utskrift
+            InteractionInfo.Clear();
+        }
+
 
 
         // en metod för en visuell representation av staden och de personer som befinner sig där.
