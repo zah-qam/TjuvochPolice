@@ -59,49 +59,67 @@ namespace TjuvochPolice
 
     class Citizen : Person
     {
-        List<Item> Belongings { get; set; } = new List<Item>();
+        public List<Item> Belongings { get; set; }
         // Här ska det vara något specifict med klassen Citizen
         public Citizen(int gridWidth, int gridHeight)
         : base(gridWidth, gridHeight)
-        {
 
+        {
             // Eventuella specifika saker för medborgaren ska läggas till här
             // T.ex. Inventory fylls på med specifika objekt här
             Belongings = new List<Item>
-                {
+            {
                 new Item("pengar"),
                 new Item("plånbok"),
                 new Item("klocka"),
                 new Item("mobil"),
-                };
+            };
         }
 
     }
     class Thief : Person
     {
-        List<Item> StoleItems { get; set; } = new List<Item>();
+        public List<Item> StolenItems { get; set; }
         public Thief(int gridWidth, int gridHeight)
         : base(gridWidth, gridHeight)
         {
+            StolenItems = new List<Item>();
+        }
 
-            StoleItems = new List<Item> { };
-
+        //Metoden för att Thief ska stjäla från Citizen
+        public string Steal(Citizen citizen)
+        {
+            int randomIndex = Random.Shared.Next(citizen.Belongings.Count); // välj en slumpmässigt föremål från Belongings
+            Item stolenItem = citizen.Belongings[randomIndex]; //Hämtar den slumpmässiga Item från Belongings
+            citizen.Belongings.RemoveAt(randomIndex); // Ta bort det från medborgarens Belongings
+            StolenItems.Add(stolenItem); // Lägg till det i tjuvens Inventory
+            return stolenItem.ItemName;
         }
     }
 
 
     class Police : Person
     {
-        List<Item> SeizedItems { get; set; } = new List<Item>();
+        public List<Item> SeizedItems { get; set; }
         public Police(int gridWidth, int gridHeight)
         : base(gridWidth, gridHeight)
         {
-            SeizedItems = new List<Item> { };
+            SeizedItems = new List<Item>();
+        }
+        // Polisen tar allt från tjuven
+        public void CatchThief(Thief thief)
+        {
+            {
+                SeizedItems.AddRange(thief.StolenItems);
+                thief.StolenItems.Clear(); // Polisen tar alla stulna föremål
+
+            }
         }
     }
-
-
 }
+
+
+
 
 
 
