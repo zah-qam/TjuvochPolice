@@ -25,7 +25,6 @@ namespace TjuvochPolice
                     {
                         if (person is Thief thief && otherPerson is Citizen citizen)
                         {
-
                             if (citizen.Belongings.Count > 0)
                             {
                                 string stolenItemName = thief.Steal(citizen); // Tjuven stjäl från medborgaren
@@ -36,10 +35,7 @@ namespace TjuvochPolice
                             else
                             {
                                 InteractionInfo.Add($"Tjuven {thief.Name} och medborgaren {citizen.Name} går bara förbi varann! ");
-
                             }
-
-
                         }
 
 
@@ -60,35 +56,29 @@ namespace TjuvochPolice
                             }
 
                         }
-
                         
                     }
                 }
             }
             
             DisplayInteractions(cityHeight);
-
-
+            //Thread.Sleep(2000);
         }
 
 
         private static void DisplayInteractions(int cityHeight)
         {
-            int infoPosition = cityHeight + 2; // Position för information
+            int infoPosition = cityHeight + 5; // Position för information
             Console.SetCursorPosition(0, infoPosition); // Flytta markören
 
             // Skriv ut interaktioner under staden
             foreach (string info in InteractionInfo)
             {
                 Console.WriteLine(info);
-                
             }
-
             // Rensa listan efter utskrift
-            InteractionInfo.Clear();
+            //InteractionInfo.Clear();
         }
-
-
 
         // en metod för en visuell representation av staden och de personer som befinner sig där.
         public static void DrawGrid(List<Person> persons, int cityWidth, int cityHeight)
@@ -99,7 +89,6 @@ namespace TjuvochPolice
                     Console.Write(""); // Tom plats
             }
             Console.WriteLine(); // Ny rad efter varje rad i griden
-
 
 
             foreach (Person person in persons)
@@ -125,10 +114,6 @@ namespace TjuvochPolice
             }
 
         }
-
-
-
     }
-
 
 }

@@ -43,17 +43,6 @@
                 City.DrawGrid(grid, gridWidth, gridHeight);
 
 
-                int statusPosition = gridHeight + 4; // Starta ifo under staden
-                Console.SetCursorPosition(0, statusPosition); // Flytta markören
-
-               
-
-                Console.WriteLine($"Total stöld: {City.totalRobbedCitizens}\nTotal arresterade tjuvar: {City.totalCauthThieves}");
-                
-                City.CheckInteractions(grid, gridHeight);
-
-            
-
                 foreach (Person person in grid)
                 {
                     // Flytta personen
@@ -64,9 +53,13 @@
 
                 }
 
-                
-                Thread.Sleep(600);
-                
+                int statusPosition = gridHeight + 2; // Starta ifo under staden
+                Console.SetCursorPosition(0, statusPosition); // Flytta markören
+
+                Console.WriteLine($"Antal rånade medborgare: {City.totalRobbedCitizens}\nAntal gripna tjuvar: {City.totalCauthThieves}");
+
+                City.CheckInteractions(grid, gridHeight);
+                Thread.Sleep(1000);
             }
         }
     }
