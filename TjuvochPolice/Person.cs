@@ -80,8 +80,7 @@ namespace TjuvochPolice
             public Thief(int gridWidth, int gridHight)
             : base(gridWidth, gridHight)
             {
-                // Eventuella specifika saker för medborgaren kan läggas här
-                // T.ex. kan Inventory fyllas på med specifika objekt här
+                
                 List<string> stolenItems = new List<string> { };
 
             }
@@ -92,8 +91,7 @@ namespace TjuvochPolice
             public Police(int gridWidth, int gridHight)
             : base(gridWidth, gridHight)
             {
-                // Eventuella specifika saker för medborgaren kan läggas här
-                // T.ex. kan Inventory fyllas på med specifika objekt här
+                
                 List<string> seizedItems = new List<string> { };
             }
 
