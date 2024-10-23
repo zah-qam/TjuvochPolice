@@ -28,13 +28,13 @@ namespace TjuvochPolice
         };
 
         // Konstruktor för basklassen Person för slumpmässiga positioner och riktningar
-        public Person(int gridWidth, int gridHight)
+        public Person(int gridWidth, int gridHeight)
         {
             Name = GetRandomName(); //Ger personerna ett radndom Name
             //Har tänkt att testa om man redan här i basklassen kan ge
             //ett random värde till x, y xD och yD
             XPosition = Random.Shared.Next(gridWidth);
-            YPosition = Random.Shared.Next(gridHight);
+            YPosition = Random.Shared.Next(gridHeight);
             XDirection = Random.Shared.Next(-1, 2);
             YDirection = Random.Shared.Next(-1, 2);
 
@@ -54,53 +54,58 @@ namespace TjuvochPolice
             XPosition = (XPosition + XDirection + gridWidth) % gridWidth;
             YPosition = (YPosition + YDirection + gridHeight) % gridHeight;
         }
-
     }
+
+
     class Citizen : Person
     {
         List<Item> Belongings { get; set; } = new List<Item>();
         // Här ska det vara något specifict med klassen Citizen
-        public Citizen(int gridWidth, int gridHight)
-        : base(gridWidth, gridHight)
+        public Citizen(int gridWidth, int gridHeight)
+        : base(gridWidth, gridHeight)
         {
 
             // Eventuella specifika saker för medborgaren ska läggas till här
             // T.ex. Inventory fylls på med specifika objekt här
             Belongings = new List<Item>
-           {
+                {
                 new Item("pengar"),
                 new Item("plånbok"),
                 new Item("klocka"),
                 new Item("mobil"),
-           };
+                };
         }
 
-        class Thief : Person
+    }
+    class Thief : Person
+    {
+        List<Item> StoleItems { get; set; } = new List<Item>();
+        public Thief(int gridWidth, int gridHeight)
+        : base(gridWidth, gridHeight)
         {
-            public Thief(int gridWidth, int gridHight)
-            : base(gridWidth, gridHight)
-            {
-                
-                List<string> stolenItems = new List<string> { };
 
-            }
-        }
-
-        class Police : Person
-        {
-            public Police(int gridWidth, int gridHight)
-            : base(gridWidth, gridHight)
-            {
-                
-                List<string> seizedItems = new List<string> { };
-            }
-
+            StoleItems = new List<Item> { };
 
         }
-
-
     }
 
 
+    class Police : Person
+    {
+        List<Item> SeizedItems { get; set; } = new List<Item>();
+        public Police(int gridWidth, int gridHeight)
+        : base(gridWidth, gridHeight)
+        {
+            SeizedItems = new List<Item> { };
+        }
+    }
+
 
 }
+
+
+
+
+
+
+
