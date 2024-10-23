@@ -32,7 +32,7 @@
             //Skapa tjuvar
             for (int i = 0 ;i < numberOfThieves; i++)
             {
-                grid.Add(new Police(gridWidth, gridHeight));
+                grid.Add(new Thief(gridWidth, gridHeight));
             }
 
         }
