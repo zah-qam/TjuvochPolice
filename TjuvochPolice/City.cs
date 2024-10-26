@@ -77,7 +77,7 @@ namespace TjuvochPolice
                 Console.WriteLine(info);
             }
             // Rensa listan efter utskrift
-            //InteractionInfo.Clear();
+            InteractionInfo.Clear();
         }
 
         // en metod för en visuell representation av staden och de personer som befinner sig där.
